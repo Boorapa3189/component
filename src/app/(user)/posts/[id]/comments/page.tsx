@@ -1,5 +1,4 @@
 import axios from "axios";
-import { PageProps } from "next";
 
 type Comment = {
     id: number;
@@ -10,9 +9,10 @@ type Comment = {
 
 export default async function CommentsPage({
     params,
-}: PageProps<{ id: string }>) {
+}: {
+    params: { id: string };
+}) {
     const { id } = params;
-
     const { data } = await axios.get<Comment[]>(
         `https://jsonplaceholder.typicode.com/posts/${id}/comments`
     );
