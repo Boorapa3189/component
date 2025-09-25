@@ -14,29 +14,22 @@ type Props = {
 export default async function CommentsPage({ params }: Props) {
     const { id } = params;
 
-    const res = await axios.get<Comment[]>(
+    const { data } = await axios.get<Comment[]>(
         `https://jsonplaceholder.typicode.com/posts/${id}/comments`
     );
-    const data = res.data;
 
     return (
-        <div className="p-6">
-            <h1 className="text-2xl font-bold mb-4">💬 Comments for Post {id}</h1>
-
+        <div>
+            <h1>Comments for Post {id}</h1>
             {data.length === 0 ? (
-                <p className="text-gray-500">ยังไม่มี Comment สำหรับ Post {id}</p>
+                <p>ยังไม่มี Comment สำหรับ Post {id}</p>
             ) : (
-                <ul className="space-y-4">
+                <ul>
                     {data.map((c) => (
-                        <li
-                            key={c.id}
-                            className="border p-4 rounded-lg shadow-sm bg-white"
-                        >
-                            <h3 className="font-semibold text-lg">{c.name}</h3>
-                            <p className="text-gray-700">{c.body}</p>
-                            <span className="block text-sm text-gray-500 mt-2">
-                                ✉ {c.email}
-                            </span>
+                        <li key={c.id} className="border p-2 my-2 rounded">
+                            <h3 className="font-bold">{c.name}</h3>
+                            <p>{c.body}</p>
+                            <span className="text-sm text-gray-500">{c.email}</span>
                         </li>
                     ))}
                 </ul>
