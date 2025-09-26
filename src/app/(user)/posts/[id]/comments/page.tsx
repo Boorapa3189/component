@@ -1,5 +1,6 @@
 // src/app/(user)/posts/[id]/comments/page.tsx
 import axios from "axios";
+import type { PageProps } from "next";
 
 type Comment = {
     id: number;
@@ -10,9 +11,7 @@ type Comment = {
 
 export default async function CommentsPage({
     params,
-}: {
-    params: { id: string };
-}) {
+}: PageProps<{ id: string }>) {
     const { id } = params;
 
     const { data } = await axios.get<Comment[]>(

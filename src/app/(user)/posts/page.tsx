@@ -15,7 +15,7 @@ export default async function PostsPage() {
                 {posts.slice(0, 5).map((p) => (
                     <li key={p.id}>
                         {p.title} —{" "}
-                        <Link href={`/post/${p.id}/comments`}>
+                        <Link href={`/posts/${p.id}/comments`}>
                             ดู Comments
                         </Link>
                     </li>
