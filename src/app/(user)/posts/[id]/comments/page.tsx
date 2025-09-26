@@ -7,11 +7,13 @@ type Comment = {
     body: string;
 };
 
-export default async function CommentsPage({
-    params,
-}: {
-    params: { id: string };
-}) {
+interface PageProps {
+    params: {
+        id: string;
+    };
+}
+
+export default async function CommentsPage({ params }: PageProps) {
     const { id } = params;
     const { data } = await axios.get<Comment[]>(
         `https://jsonplaceholder.typicode.com/posts/${id}/comments`
